@@ -11,7 +11,7 @@ wordcloud28 <- function() {
 
 
 	library(tm)
-	cname <- file.path("/root", "texts")
+	cname <- file.path("/", "texts")
 	
 
 
