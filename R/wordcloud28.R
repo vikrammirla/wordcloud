@@ -14,14 +14,13 @@ wordcloud28 <- function() {
 	cname <- file.path(".", "texts")
 	
 
-
+    #method1
 	dir(cname)
 	#docs <- Corpus(DirSource(cname))  
 	#inspect(docs)
 	#docs$content
 
-
-
+	#method2
 	library("magrittr")
 	url <- "http://www.textfiles.com/stories/3lpigs.txt"
 
@@ -39,7 +38,17 @@ wordcloud28 <- function() {
 	inspect(Corpus(docs))
 
 
-	docs <- tm_map(docs, removePunctuation)   
+   #method3
+	library(tm)
+
+   GreekShippingContent <- "The Greek administration is coming under increasing pressure over it foot-dragging regarding its meeting international convention deadlines, especially when it relies on classification societies as an Recognised Organisation (RO) on its behalf. " 
+   GreekShippingContent0 <-  Corpus(VectorSource(GreekShippingContent))
+   docs<-tm_map(GreekShippingContent0, PlainTextDocument)
+
+
+
+
+	#docs <- tm_map(docs, removePunctuation)   
 
 	for(j in seq(docs))   
 	{   
