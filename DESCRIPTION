@@ -1,0 +1,11 @@
+Package: wordcloud28
+Type: OpenCPU Application
+Title: wordcloud for pdf file uploads - Demo application for OpenCPU
+Version: 1.0
+Date: 2016-1-19
+Author: Test                    
+Maintainer: Vikram <vikrammirla@gmail.com>
+Description: OpenCPU
+License: Apache2
+Depends:
+    tm

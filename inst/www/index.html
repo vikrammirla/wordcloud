@@ -1,0 +1,93 @@
+<html>
+<head>
+	<title>Wordcloud app</title>
+
+	<script src="javascripts/jquery-2.1.4.min.js"> </script>
+	<script src="javascripts/d3.js"> </script>
+	<script src="javascripts/c3.js"> </script>
+	<script src="javascripts/opencpu-0.4.js"> </script>
+
+	<script type="text/javascript">
+
+		$(function() {
+			var req = $('#plotDiv').rplot("quandlstock").fail(function() {
+				alert(req.responseText)
+			})
+
+			ocpu.seturl("//159.203.11.42//ocpu/library/utils/R")
+
+			//actual handler
+			$("#submitbutton").on("click", function(){
+
+			    //arguments
+			    var myheader = $("#header").val() == "true";
+			    var myfile = $("#csvfile")[0].files[0];
+			        
+			    if(!myfile){
+			        alert("No file selected.");
+			        return;
+			    }
+
+			    //disable the button during upload
+			    $("#submitbutton").attr("disabled", "disabled");
+
+			    //perform the request
+			    var req = ocpu.call("read.csv", {
+			        "file" : myfile,
+			        "header" : myheader
+			    }, function(session){
+			        session.getConsole(function(outtxt){
+			            $("#output").text(outtxt); 
+			        });
+			    });
+			        
+			    //if R returns an error, alert the error message
+			    req.fail(function(){
+			        alert("Server error: " + req.responseText);
+			    });
+			    
+			    //after request complete, re-enable the button 
+			    req.always(function(){
+			        $("#submitbutton").removeAttr("disabled")
+			    });        
+			});    
+
+		})
+
+	</script>
+
+<style>
+#plotdiv {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 900px;
+  height: 600px;
+  border: solid gray 1px;
+}
+</style>
+
+
+</head>
+
+
+<body>
+	<h1>Query Quandl and plot a simple R chart</h1>
+<div id="plotDiv"></div>
+
+<h1>Uploading a CSV File</h1>
+
+<b>CSV File</b> <input type="file" id="csvfile"> 
+<br />
+
+<b>Header</b> <select id="header">
+<option>true</option>
+<option>false</option>
+</select> 
+
+<br />
+<button id="submitbutton" type="button">read.csv</button>
+
+<pre><code id="output"></code></pre>
+
+</body>
+</html>
