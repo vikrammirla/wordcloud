@@ -16,9 +16,28 @@ wordcloud28 <- function() {
 
 
 	dir(cname)
-	docs <- Corpus(DirSource(cname))  
-	inspect(docs)
-	docs$content
+	#docs <- Corpus(DirSource(cname))  
+	#inspect(docs)
+	#docs$content
+
+
+
+	library("magrittr")
+	url <- "http://www.textfiles.com/stories/3lpigs.txt"
+
+	corpus <- url %>% 
+	  paste(readLines(url), collapse=" ") %>% 
+	  gsub("http://www.textfiles.com/stories/3lpigs.txt", "", .)
+	head(corpus)
+
+	z <- corpus %>% 
+	  gsub(" +", " ", .) %>% 
+	  strsplit(split = "[\\.?!] ")
+	z
+	#I copied above code from stackoverflow, and tried to create a corpus from the data frame
+	(docs <- DataframeSource(data.frame(z)))
+	inspect(Corpus(docs))
+
 
 	docs <- tm_map(docs, removePunctuation)   
 
@@ -65,24 +84,16 @@ wordcloud28 <- function() {
 
 	#This tells R to treat your preprocessed documents as text documents.
 	docs <- tm_map(docs, PlainTextDocument) 
-
-
-
 	#create a document term matrix.
 	dtm <- DocumentTermMatrix(docs)   
 	inspect(dtm)
 	dim(dtm)
 	inspect(dtm[1, 1:20])
 
-
-
-
 	#transpose of this matrix
 	tdm <- TermDocumentMatrix(docs)  
 
-
 	#Organize terms by their frequency:
-
 	colSums(as.matrix(as.matrix(dtm)))
 	freq <- colSums(as.matrix(dtm))   
 	length(freq)  
