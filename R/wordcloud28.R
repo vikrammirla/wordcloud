@@ -41,9 +41,9 @@ wordcloud28 <- function() {
    #method3
 	library(tm)
 
-   GreekShippingContent <- "The Greek administration is coming under increasing pressure over it foot-dragging regarding its meeting international convention deadlines, especially when it relies on classification societies as an Recognised Organisation (RO) on its behalf. " 
-   GreekShippingContent0 <-  Corpus(VectorSource(GreekShippingContent))
-   docs<-tm_map(GreekShippingContent0, PlainTextDocument)
+   #GreekShippingContent <- "The Greek administration is coming under increasing pressure over it foot-dragging regarding its meeting international convention deadlines, especially when it relies on classification societies as an Recognised Organisation (RO) on its behalf. " 
+   #GreekShippingContent0 <-  Corpus(VectorSource(GreekShippingContent))
+   #docs<-tm_map(GreekShippingContent0, PlainTextDocument)
 
 
 
