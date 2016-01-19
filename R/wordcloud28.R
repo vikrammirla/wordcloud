@@ -1,13 +1,13 @@
 
-#' quandlstock
+#' wordcloud28
 #' 
-#' Quandl
-#' Test
+#' upload files
+#' generate wordcloud
 #' 
 #' @return null
 #' @author Vikram Mirla
 #' @export
-quandlstock <- function() {
+wordcloud28 <- function() {
 
 	library(Quandl)
 	Quandl.api_key("pk6yzCsxF1k-ygB29nfS")
