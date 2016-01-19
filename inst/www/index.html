@@ -19,6 +19,19 @@
 				alert(req.responseText)
 			})
 
+
+			var req = ocpu.call("rChartsTest", {
+			   
+				    }, function(session){
+				    	debugger;
+				    	console.log(session)
+					      //$("iframe").attr('src', session.getFileURL("mymap.html"));
+					    }).fail(function(text){
+					      alert("Error: " + req.responseText);
+		   })
+
+
+
 			ocpu.seturl("//159.203.11.42//ocpu/library/utils/R")
 
 			//actual handler
