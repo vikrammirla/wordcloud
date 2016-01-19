@@ -48,56 +48,16 @@ wordcloud28 <- function() {
 
 
 
-	#docs <- tm_map(docs, removePunctuation)   
-
-	for(j in seq(docs))   
-	{   
-	  docs[[j]] <- gsub("/", " ", docs[[j]])   
-	  docs[[j]] <- gsub("@", " ", docs[[j]])   
-	  docs[[j]] <- gsub("\\|", " ", docs[[j]])
-	  docs[[j]] <- gsub("\\|", " ", docs[[j]])
-	  docs[[j]] <- gsub("\\t", " ", docs[[j]])
-	  docs[[j]] <- gsub("\\]", " ", docs[[j]])
-	  docs[[j]] <- gsub("\\[", " ", docs[[j]])
-	} 
-
-	docs <- tm_map(docs, removeNumbers) 
-	docs <- tm_map(docs, tolower)   
-	docs <- tm_map(docs, removeWords, stopwords("english"))   
-	docs <- tm_map(docs, removeWords, c("department", "email"))
-
-
-	#Removing particular words:
-	docs <- tm_map(docs, removeWords, c("initiation", "email","june","bfams")) 
-	inspect(docs)
-	#Combining words that should stay together
-
-
-	for (j in seq(docs))
-	{
-	  docs[[j]] <- gsub("qualitative research", "QDA", docs[[j]])
-	  docs[[j]] <- gsub("goldman sachs global investment research", "GSGIR", docs[[j]])
-	  docs[[j]] <- gsub("qualitative analysis", "QDA", docs[[j]])
-	  docs[[j]] <- gsub("research methods", "research_methods", docs[[j]])
-	}
-
-
 	#Removing common word endings. (e.g., “ing”, “es”, “s”)
 	library(SnowballC)  
 	#docs <- tm_map(docs, stemDocument)   
 
-	#Stripping unnecesary whitespace from your documents
-	docs <- tm_map(docs, stripWhitespace)   
-
-
-
-	#This tells R to treat your preprocessed documents as text documents.
-	docs <- tm_map(docs, PlainTextDocument) 
+	
 	#create a document term matrix.
 	dtm <- DocumentTermMatrix(docs)   
-	inspect(dtm)
+#	inspect(dtm)
 	dim(dtm)
-	inspect(dtm[1, 1:20])
+#	inspect(dtm[1, 1:20])
 
 	#transpose of this matrix
 	tdm <- TermDocumentMatrix(docs)  
@@ -109,13 +69,12 @@ wordcloud28 <- function() {
 	ord <- order(freq)
 	m <- as.matrix(dtm)   
 	dim(m) 
-	write.csv(m, file="dtm.csv") 
+#	write.csv(m, file="dtm.csv") 
 
 
 
 	#  Start by removing sparse terms:
 	dtms <- removeSparseTerms(dtm, 0.3)
-	inspect(dtms)
 
 
 	#Word Frequency
