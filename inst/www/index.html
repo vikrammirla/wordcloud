@@ -14,6 +14,11 @@
 				alert(req.responseText)
 			})
 
+
+			var req = $('#rChartsTestDiv').rplot("rChartsTest").fail(function() {
+				alert(req.responseText)
+			})
+
 			ocpu.seturl("//159.203.11.42//ocpu/library/utils/R")
 
 			//actual handler
@@ -73,7 +78,7 @@
 <body>
 	<h1>Wordcloud from pdf file</h1>
 <div id="plotDiv"></div>
-
+<div id="rChartsTestDiv"></div>
 <h1>Uploading a CSV File</h1>
 
 <b>CSV File</b> <input type="file" id="csvfile"> 

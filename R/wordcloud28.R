@@ -7,6 +7,22 @@
 #' @return null
 #' @author Vikram Mirla
 #' @export
+
+
+rChartsTest <- function() {
+	library(devtools)
+	#install_github("ramnathv/rCharts")
+	library(rCharts)
+
+	# interactive bar chart with d3js(NVD3)
+	# this code example was taken from http://ramnathv.github.io/rCharts/
+	hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
+	n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
+	n1$print("chart42")
+	n1
+
+}
+
 wordcloud28 <- function() {
 
 

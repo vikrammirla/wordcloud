@@ -1,1 +1,2 @@
 export(wordcloud28)
+export(rChartsTest)
