@@ -23,6 +23,26 @@
 			ocpu.seturl("//159.203.11.42//ocpu/library/utils/R")
 
 
+
+$("#mapsubmit").click(function(e){
+    e.preventDefault();
+    var btn = $(this).attr("disabled", "disabled");
+    var req = ocpu.call("make_map", {
+      title : $("#mytitle").val(),
+      lat: $("#mylat").val(),
+      lng: $("#mylng").val()
+    }, function(session){
+      $("iframe").attr('src', session.getFileURL("mymap.html"));
+    }).fail(function(text){
+      alert("Error: " + req.responseText);
+    }).always(function(){
+      btn.removeAttr("disabled");
+    });
+  });
+
+
+
+/*
 			var req = ocpu.call("rChartsTest", {
 			   
 				    }, function(session){
@@ -33,7 +53,7 @@
 					      alert("Error: " + req.responseText);
 		   })
 
-
+*/
 
 			
 
@@ -130,6 +150,32 @@ iframe {
 
 <pre><code id="output"></code></pre>
 
+
+
+
+
+
+<div class="container">
+    <div class="col-sm-3">
+      <form>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" id="mytitle" value="The birthplace of R">
+        </div>
+        <div class="form-group">
+          <label>Latitude</label>
+          <input type="number" class="form-control" id="mylat" value="-36.852">
+        </div>
+        <div class="form-group">
+          <label>Longitude</label>
+          <input type="number" class="form-control" id="mylng" value="174.768">
+        </div>
+        <button type="submit" id="mapsubmit" class="btn btn-default">Update Map!</button>
+      </form>
+    </div>
+  </div>
+
+<iframe src="about:blank"></iframe>
 
 
 
