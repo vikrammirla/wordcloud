@@ -1,2 +1,1 @@
-export(wordcloud28)
-export(rChartsTest)
+export(make_map)
