@@ -10,9 +10,9 @@
 	<script type="text/javascript">
 
 		$(function() {
-			var req = $('#plotDiv').rplot("wordcloud28").fail(function() {
-				alert(req.responseText)
-			})
+			//var req = $('#plotDiv').rplot("wordcloud28").fail(function() {
+		//		alert(req.responseText)
+	//		})
 
 
 	//		var req = $('#rChartsTestDiv').rplot("rChartsTest").fail(function() {
@@ -25,7 +25,7 @@
 				    }, function(session){
 				    	debugger;
 				    	console.log(session)
-					      $("iframe").attr('src', session.getFileURL("mymap.html"));
+					      $("iframe").attr('src', session.getFileURL("myChart.html"));
 					    }).fail(function(text){
 					      alert("Error: " + req.responseText);
 		   })
@@ -107,6 +107,9 @@ iframe {
 
 <body>
 	<h1>Wordcloud from pdf file</h1>
+
+
+<iframe src="about:blank"></iframe>
 <div id="plotDiv"></div>
 <div id="rChartsTestDiv"></div>
 <h1>Uploading a CSV File</h1>
@@ -125,7 +128,6 @@ iframe {
 <pre><code id="output"></code></pre>
 
 
-<iframe src="about:blank"></iframe>
 
 
 
