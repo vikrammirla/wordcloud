@@ -19,9 +19,9 @@ rChartsTest <- function() {
 	hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
 	n1 <- nPlot(Freq ~ Hair, group = "Eye", data = hair_eye_male, type = "multiBarChart")
 	#n1$print("chart42")
-    n1$save
-    n1$save('myChart.html')
-	#htmlwidgets::saveWidget(n1, "mymap.html", selfcontained = FALSE)
+   # n1$save
+   #n1$save('myChart.html')
+	htmlwidgets::saveWidget(n1, "myChart.html", selfcontained = FALSE)
 
 
 }
